@@ -20,3 +20,9 @@ dotfiles config --local status.showUntrackedFiles no
 dotfiles checkout
 ```
 
+Manipulate dotfiles, example
+```sh
+dotfiles status
+dotfiles add .vimrc
+dotfiles commit -m "Add vimrc"
+dotfiles push

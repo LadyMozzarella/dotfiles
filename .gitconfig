@@ -1,0 +1,31 @@
+[core]
+	editor = 'subl' --wait
+[color]
+  ui = auto
+[color "branch"]
+  current = black cyan dim
+  local = cyan dim
+  remote = white dim
+[color "diff"]
+  meta = white dim
+  frag = white black dim
+  old = red
+  new = green
+[color "status"]
+  branch = cyan ul
+  added = green
+  changed = yellow dim
+  untracked = white dim
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  addwordp = add -c interactive.diffFilter="git diff --word-diff --color" -p
+  # Note: "%x09" is what is providing the padding after the short commit hash
+  hist = log --graph --full-history --all --pretty=format:\"%h%x09%Cblue%<(15,trunc)%an%Creset| %s%Cgreen%d\"
+	# Use as git logdiff master..upstream/master
+  logdiff = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  sloth = !sh -c \"sleep 1 && git $@\"
+[http]
+[http "ssl"]

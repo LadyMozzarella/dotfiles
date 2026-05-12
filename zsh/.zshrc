@@ -7,9 +7,6 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# dotfiles bare repo (see ~/.dotfiles/README or LadyMozzarella/dotfiles)
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # direnv
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 

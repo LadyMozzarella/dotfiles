@@ -9,10 +9,14 @@ Each top-level directory is a stow "package" whose contents are symlinked into
 ```
 git/
   .gitconfig
+  .gitconfig-stell    # commit.gpgsign=true, pulled in for StellEngineering repos
   .gitignore_global
 ssh/
   .ssh/
     config.template
+starship/
+  .config/
+    starship.toml
 zsh/
   .zshrc
 ```
@@ -20,8 +24,8 @@ zsh/
 ## Setup on a new machine
 
 ```sh
-# 1. Install stow
-brew install stow
+# 1. Install stow + shell deps
+brew install stow starship zsh-autosuggestions zsh-syntax-highlighting
 
 # 2. Clone the repo
 git clone https://github.com/LadyMozzarella/dotfiles.git ~/Developer/dotfiles
@@ -34,7 +38,7 @@ for f in .zshrc .gitconfig .gitignore_global; do
 done
 
 # 4. Apply every package
-stow -t ~ git zsh ssh
+stow -t ~ git zsh ssh starship
 ```
 
 That's it — `~/.zshrc`, `~/.gitconfig`, etc. are now symlinks back into this repo.

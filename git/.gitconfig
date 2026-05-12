@@ -29,7 +29,14 @@
 	logdiff = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	sloth = !sh -c \"sleep 1 && git $@\"
 [commit]
-	gpgsign = true
+	# Default: don't sign. Personal repos stay unsigned.
+	gpgsign = false
 # Per-machine identity lives in ~/.gitconfig.local (not committed).
 [include]
 	path = .gitconfig.local
+# Turn signing back on for StellEngineering org repos (matched by remote URL).
+# Covers both SSH (git@github.com:StellEngineering/...) and HTTPS clones.
+[includeIf "hasconfig:remote.*.url:git@github.com:StellEngineering/**"]
+	path = .gitconfig-stell
+[includeIf "hasconfig:remote.*.url:https://github.com/StellEngineering/**"]
+	path = .gitconfig-stell

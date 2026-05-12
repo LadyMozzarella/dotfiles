@@ -14,3 +14,21 @@ symbol = " "
 ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+
+# Starship can't cheaply check actual AWS auth state (would require a network
+# call per prompt), so we use "AWS_PROFILE is set" as the proxy. Prompt segment
+# is silent unless you `export AWS_PROFILE=…`. Relies on ~/.aws/config having
+# NO `region` under [default] — otherwise the segment renders from that.
+[aws]
+format = 'on [$symbol$profile (\($region\) )]($style)'
+symbol = '☁️  '
+style = 'bold yellow'
+expiration_symbol = '✘'
+
+[aws.region_aliases]
+us-gov-west-1 = 'gov-west'
+us-gov-east-1 = 'gov-east'
+us-east-1 = 'use1'
+us-east-2 = 'use2'
+us-west-1 = 'usw1'
+us-west-2 = 'usw2'
